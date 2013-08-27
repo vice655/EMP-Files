@@ -13,7 +13,7 @@ function ulx.spawn( calling_ply, target_plys )
 		elseif v:IsFrozen() then
 			ULib.tsayError( calling_ply, v:Nick() .. " is apparantly frozen?", true )
 		elseif v:Alive() then
-			ULib.tsayError( calling_ply, v:Nick() .. " is already alive! How can I respawn him? :I", true ) -- I wonder if you could use csay? :o
+			ULib.tsayError( calling_ply, v:Nick() .. " is alive? Do you think i'm an idiot -- how can I respawn him?!", true ) -- I wonder if you could use csay? :o
 		else
 			v:SetRole(ROLE_INNOCENT) -- They will be innocent
 			v:Spawn()
