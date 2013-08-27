@@ -1,6 +1,6 @@
 -- The following code was created for TTT, using it in any other gamemode may have undesired consequences, although unlikely.
 -- Version 0.93
-local CATEGORY_NAME = "Trouble in Terrorist town" -- What you are playing
+local CATEGORY_NAME = "TTT Commands" -- What you are playing
 
 function ulx.spawn( calling_ply, target_plys )
 	local affected_plys = {}
