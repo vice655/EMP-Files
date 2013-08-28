@@ -15,8 +15,8 @@ function ulx.spawn( calling_ply, target_plys )
 		elseif v:Alive() then
 			ULib.tsayError( calling_ply, v:Nick() .. " is alive? Do you think i'm an idiot -- how can I respawn him?! Even the Law cant respawn him.", true ) -- I wonder if you could use csay? :o
 		else
-			v:SetRole(ROLE_INNOCENT) -- They will be innocent
 			v:Spawn()
+			v:SetRole(ROLE_INNOCENT) -- They will be innocent
 			table.insert( affected_plys, v )
 		end
 	end
@@ -34,6 +34,7 @@ function ulx.cc_traitor( ply, targs )
 		 v:SetRole(ROLE_TRAITOR)
 		 v:SetDefaultCredits()
  	end
+ 	ulx.fancyLogAdmin( calling_ply, "#A forced #T to be a traitor", affected_plys )
  	SendFullStateUpdate()
  end
  local silent = ulx.command( CATEGORY_NAME, "ulx forcetraitor", ulx.cc_traitor, "!forcetraitor", true )
@@ -41,6 +42,19 @@ function ulx.cc_traitor( ply, targs )
  silent:defaultAccess( ULib.ACCESS_SUPERADMIN )
  silent:help( "Turns desired user into a traitor" ) -- ulx help hint
 
+function ulx.cc_silenttraitor( ply, targs )
+
+ 	for _, v in ipairs( targs ) do
+		 v:SetRole(ROLE_TRAITOR)
+		 v:SetDefaultCredits()
+ 	end
+ 	SendFullStateUpdate()
+ end
+ local silent = ulx.command( CATEGORY_NAME, "ulx sforcetraitor", ulx.cc_silenttraitor, "!sforcetraitor", true )
+ silent:addParam{type=ULib.cmds.PlayersArg, hint = "<name(s)>"}
+ silent:defaultAccess( ULib.ACCESS_SUPERADMIN )
+ silent:help( "Basically the same as the traitor command except people wont be whining of admin abuse" ) -- ulx help hint
+ 
 function ulx.cc_detective( ply, targs )
 
  	for _, v in ipairs( targs ) do
@@ -48,6 +62,7 @@ function ulx.cc_detective( ply, targs )
 		 v:Give("weapon_ttt_wtester") -- give DNA scanner
 		 v:SetDefaultCredits()
  	end
+ 	ulx.fancyLogAdmin( calling_ply, "#A forced #T to be a detective", affected_plys )
  	SendFullStateUpdate()
  end
  local silent = ulx.command( CATEGORY_NAME, "ulx forcedetective", ulx.cc_detective, "!forcedetective", true )
@@ -61,6 +76,7 @@ function ulx.cc_innocent( ply, targs )
  	for _, v in ipairs( targs ) do
 		 v:SetRole(ROLE_INNOCENT) -- Forces innocent status
  	end
+ 	ulx.fancyLogAdmin( calling_ply, "#A forced #T to be an innocent - unlucky them ...", affected_plys )
  	SendFullStateUpdate()
  end
  local silent = ulx.command( CATEGORY_NAME, "ulx forceinnocent", ulx.cc_innocent, "!forceinnocent", true )
