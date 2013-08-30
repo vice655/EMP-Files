@@ -1,0 +1,17 @@
+if SERVER then AddCSLuaFile( "colors.lua" ) return end 
+
+local ColorGroups = {} 
+-- ColorGroups["superadmin"] = Color( 108,177,236 ) 
+ColorGroups["mod"] = Color( 108,177,236 )
+ColorGroups["operator"] = Color( 255, 100, 255 )
+ColorGroups["trusted"] = Color( 104,196,77 )
+
+hook.Add( "TTTScoreboardColorForPlayer", "Special Colors", function( ply )
+
+	if ColorGroups[ply:GetNWString("UserGroup")] then
+		return ColorGroups[ply:GetNWString("UserGroup")]
+	end
+
+	return nil
+
+end )
