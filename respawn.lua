@@ -15,9 +15,8 @@ function ulx.spawn( calling_ply, target_plys )
 		elseif v:Alive() then
 			ULib.tsayError( calling_ply, v:Nick() .. " is alive? Do you think i'm an idiot -- how can I respawn him?! Even the Law cant respawn him.", true ) -- I wonder if you could use csay? :o
 		else
-			v:SetTeam( TEAM_TERROR )
 			v:Spawn()
-			v:SetRole(ROLE_INNOCENT) -- They will be innocent
+			v:SetTeam( TEAM_TERROR )
 			table.insert( affected_plys, v )
 		end
 	end
@@ -32,11 +31,9 @@ law:help( "Respawns <user> and makes them innocent" )
 function ulx.cc_traitor( ply, targs )
 
  	for _, v in ipairs( targs ) do
- 		v:SetTeam( TEAM_TERROR )
 		 v:SetRole(ROLE_TRAITOR)
 		 v:SetDefaultCredits()
  	end
- 	ulx.fancyLogAdmin( calling_ply, "#A forced #T to be a traitor", affected_plys )
  	SendFullStateUpdate()
  end
  local silent = ulx.command( CATEGORY_NAME, "ulx forcetraitor", ulx.cc_traitor, "!forcetraitor", true )
@@ -47,7 +44,6 @@ function ulx.cc_traitor( ply, targs )
 function ulx.cc_silenttraitor( ply, targs )
 
  	for _, v in ipairs( targs ) do
- 		v:SetTeam( TEAM_TERROR )
 		 v:SetRole(ROLE_TRAITOR)
 		 v:SetDefaultCredits()
  	end
@@ -61,7 +57,6 @@ function ulx.cc_silenttraitor( ply, targs )
 function ulx.cc_detective( ply, targs )
 
  	for _, v in ipairs( targs ) do
- 		v:SetTeam( TEAM_TERROR )
 		 v:SetRole(ROLE_DETECTIVE)
 		 v:Give("weapon_ttt_wtester") -- give DNA scanner
 		 v:SetDefaultCredits()
@@ -78,10 +73,9 @@ function ulx.cc_detective( ply, targs )
 function ulx.cc_innocent( ply, targs )
 
  	for _, v in ipairs( targs ) do
- 		v:SetTeam( TEAM_TERROR )
 		 v:SetRole(ROLE_INNOCENT) -- Forces innocent status
  	end
- 	ulx.fancyLogAdmin( calling_ply, "#A forced #T to be an innocent - unlucky them ...", affected_plys )
+ 	ulx.fancyLogAdmin( calling_ply, "#A forced #T to be an innocent - l0l", affected_plys )
  	SendFullStateUpdate()
  end
  local silent = ulx.command( CATEGORY_NAME, "ulx forceinnocent", ulx.cc_innocent, "!forceinnocent", true )
